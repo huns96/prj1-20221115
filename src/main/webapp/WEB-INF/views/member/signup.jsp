@@ -47,6 +47,20 @@
 						<div id="nickNameText1" class="form-text">별명 중복확인을 해주세요.</div>
 						
 					</div>
+					
+					<div class="mb-3">
+						<label for="" class="form-label">
+							별명
+						</label>
+						
+						<div class="input-group">
+							<input id="nickNameInput1" class="form-control" type="text" name="nickName">
+							<button id="nickNameExistButton1" class="btn btn-outline-secondary" type="button">중복확인</button>
+						</div>
+						
+						<div id="nickNameText1" class="form-text">별명 중복확인을 해주세요.</div>
+						
+					</div>
 
 					<div class="mb-3">
 						<label for="" class="form-label">

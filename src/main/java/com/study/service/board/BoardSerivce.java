@@ -1,6 +1,8 @@
 package com.study.service.board;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -44,28 +46,27 @@ public class BoardSerivce {
 				// db에 파일 정보 저장
 				boardMapper.insertFile(board.getId(), file.getOriginalFilename());
 				
-				uploadfile(board.getId(), file);
+				uploadFile(board.getId(), file);
 			}
 		}
 		
 		return cnt;
 	}
 
-	private void uploadfile(int id, MultipartFile file) {
+	private void uploadFile(int id, MultipartFile file) {
 		try {
-			
-			// s3에 파일 저장
+			// S3에 파일 저장
 			// 키 생성
 			String key = "prj1/board/" + id + "/" + file.getOriginalFilename();
 			
-			//putObjectRequest
+			// putObjectRequest
 			PutObjectRequest putObjectRequest = PutObjectRequest.builder()
 					.bucket(bucketName)
 					.key(key)
 					.acl(ObjectCannedACL.PUBLIC_READ)
 					.build();
 			
-			//requestBody
+			// requestBody
 			RequestBody requestBody = RequestBody.fromInputStream(file.getInputStream(), file.getSize());
 			
 			// object(파일) 올리기
@@ -109,9 +110,9 @@ public class BoardSerivce {
 		return boardMapper.list(offset, records, type, "%" + keyword + "%");
 	}
 
-	public BoardDto get(int id) {
+	public BoardDto get(int id, String username) {
 		// TODO Auto-generated method stub
-		return boardMapper.select(id);
+		return boardMapper.select(id, username);
 	}
 
 	public int update(BoardDto board, MultipartFile[] addFiles, List<String> removeFiles) {
@@ -123,8 +124,8 @@ public class BoardSerivce {
 			for (String fileName : removeFiles) {
 				// 1. File 테이블에서 record 지우기
 				boardMapper.deleteFileByBoardIdAndFileName(boardId, fileName);
-				// 2. 저장소에 실제 파일 지우기
-				deletefile(boardId, fileName);
+				// 2. S3 저장소에 실제 파일(object) 지우기
+				deleteFile(boardId, fileName);
 			}
 		}
 		
@@ -138,9 +139,10 @@ public class BoardSerivce {
 				// File table에 파일명 추가
 				boardMapper.insertFile(boardId, name);
 				
-				// s3 저장소에 실제 파일 추가
-				uploadfile(boardId, file);
+				// S3 저장소에 실제 파일(object) 추가
+				uploadFile(boardId, file);
 			}
+			
 		}
 		
 		
@@ -152,12 +154,12 @@ public class BoardSerivce {
 		
 		List<String> fileNames = board.getFileName();
 		
-		if(fileNames != null) {
+		if (fileNames != null) {
 			for (String fileName : fileNames) {
-				deletefile(id, fileName);
+				// s3 저장소의 파일 지우기
+				deleteFile(id, fileName);
 			}
 		}
-		
 		
 		// db 파일 records 지우기
 		boardMapper.deleteFileByBoardId(id);
@@ -172,8 +174,7 @@ public class BoardSerivce {
 		return boardMapper.delete(id);
 	}
 
-	private void deletefile(int id, String fileName) {
-		// s3 저장소의 파일 지우기
+	private void deleteFile(int id, String fileName) {
 		String key = "prj1/board/" + id + "/" + fileName;
 		DeleteObjectRequest deleteObjectRequest = DeleteObjectRequest.builder()
 				.bucket(bucketName)
@@ -182,6 +183,33 @@ public class BoardSerivce {
 		s3Client.deleteObject(deleteObjectRequest);
 	}
 	
+	public Map<String, Object> updateLike(String boardId, String memberId) {
+		Map<String, Object> map = new HashMap<>();
+		
+		int cnt = boardMapper.getLikeByBoardIdAndMemberId(boardId, memberId);
+		if (cnt == 1) {
+			// boardId와 username으로 좋아요 테이블 검색해서 있으면?
+			// 삭제
+			boardMapper.deleteLike(boardId, memberId);
+			map.put("current", "not liked");
+		} else {
+			// 없으면?
+			// insert
+			boardMapper.insertLike(boardId, memberId);
+			map.put("current", "liked");
+		}
+		
+		int countAll = boardMapper.countLikeByBoardId(boardId);
+		// 현재 몇개인지	
+		map.put("count", countAll);
+		
+		return map;
+	}
+
+	public BoardDto get(int id) {
+		// TODO Auto-generated method stub
+		return get(id, null);
+	}
 }
 
 

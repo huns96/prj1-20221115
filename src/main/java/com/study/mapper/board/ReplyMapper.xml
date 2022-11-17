@@ -23,6 +23,7 @@
 		id,
 		boardId,
 		content,
+		writer,
 		inserted
 	FROM
 		Reply
@@ -41,7 +42,9 @@
 		id,
 		boardId,
 		content,
-		inserted
+		writer,
+		(writer = #{username}) editable,
+ 		inserted
 	FROM
 		Reply
 	WHERE
@@ -51,7 +54,18 @@
 	</select>
 
 	<insert id="insert">
-	INSERT INTO Reply (boardId, content)
-	VALUES (#{boardId}, #{content})
+	INSERT INTO Reply (boardId, content, writer)
+	VALUES (#{boardId}, #{content}, #{writer})
 	</insert>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.net.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
-<%@ page import="java.net.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,7 +53,7 @@
 								</div>
 								<div class="col-10">
 									<div>
-										<img class="img-fluid img-thumbnail" src="${imgUrl }/${board.id }/${name}" alt="">
+										<img class="img-fluid img-thumbnail" src="${imgUrl }/${board.id }/${URLEncoder.encode(name, 'utf-8')}" alt="">
 									</div>
 								</div>
 							</div>
@@ -68,7 +68,7 @@
 					
 					<div class="mb-3">
 						<label for="" class="form-label">작성자</label>
-						<input type="text" name="writer" class="form-control" value="${board.writer }">
+						<input readonly type="text" class="form-control" value="${board.writer }">
 					</div>
 					<div class="mb-3">
 						<label for="" class="form-label">작성일시</label>

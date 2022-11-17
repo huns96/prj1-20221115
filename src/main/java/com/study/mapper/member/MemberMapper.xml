@@ -7,7 +7,7 @@
 
 	<select id="selectByNickName" resultType="com.study.domain.member.MemberDto">
 	SELECT 
-		id, 
+		id,
 		nickName,
 		password,
 		email,
@@ -17,7 +17,6 @@
 	WHERE
 		nickName = #{nickName}
 	</select>
-	
 
 	<select id="selectByEmail" resultType="com.study.domain.member.MemberDto">
 	SELECT 
@@ -40,7 +39,9 @@
 	<update id="update">
 	UPDATE Member
 	SET
+		<if test="password != null">
 		password = #{password},
+		</if>
 		nickName = #{nickName},
 		email = #{email}
 	WHERE

@@ -6,15 +6,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HomeController {
-
-	@RequestMapping("")
-	@ResponseBody
-	public String home() {
-		return "welcome home!";
-	}
 	
-	@RequestMapping("index")
-	public void index() {
-		// index.jsp로 forward
+	@RequestMapping("")
+	public String home() {
+		return "redirect:/board/list";
 	}
 }
+
+
+
+
+
+
+
+
+

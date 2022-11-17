@@ -8,6 +8,7 @@
 </head>
 <body>
 	<h1>welcome INDEX FILE!!!</h1>
+	<!-- div>a*3 -->
 	<div>
 		<a href=""></a>
 		<a href=""></a>
