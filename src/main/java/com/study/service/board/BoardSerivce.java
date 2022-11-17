@@ -170,6 +170,9 @@ public class BoardSerivce {
 		
 //		int a = 3 / 0; // runtime exception
 		
+		// 좋아요 지우기
+		boardMapper.deleteLikeByBoardId(id);
+		
 		// 게시물 지우기
 		return boardMapper.delete(id);
 	}
@@ -182,7 +185,7 @@ public class BoardSerivce {
 				.build();
 		s3Client.deleteObject(deleteObjectRequest);
 	}
-	
+
 	public Map<String, Object> updateLike(String boardId, String memberId) {
 		Map<String, Object> map = new HashMap<>();
 		
@@ -192,15 +195,16 @@ public class BoardSerivce {
 			// 삭제
 			boardMapper.deleteLike(boardId, memberId);
 			map.put("current", "not liked");
+			
 		} else {
 			// 없으면?
 			// insert
 			boardMapper.insertLike(boardId, memberId);
 			map.put("current", "liked");
 		}
-		
+
 		int countAll = boardMapper.countLikeByBoardId(boardId);
-		// 현재 몇개인지	
+		// 현재 몇개인지
 		map.put("count", countAll);
 		
 		return map;
@@ -210,6 +214,7 @@ public class BoardSerivce {
 		// TODO Auto-generated method stub
 		return get(id, null);
 	}
+	
 }
 
 
