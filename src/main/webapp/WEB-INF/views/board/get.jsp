@@ -281,6 +281,10 @@ function listReply() {
 			const replyDiv = `
 				<div class="list-group-item d-flex">
 					<div class="me-auto">
+						<h5>
+							<i class="fa-solid fa-user"></i>
+							\${item.writer}
+						</h5>
 						<div>
 							\${item.content}
 						</div>
@@ -328,6 +332,8 @@ function removeReply(replyId) {
 	.then(() => listReply());
 }
 
+const replySendButton1 = document.querySelector("#replySendButton1");
+if(replySendButton1 != null) {
 document.querySelector("#replySendButton1").addEventListener("click", function() {
 	const boardId = document.querySelector("#boardId").value;
 	const content = document.querySelector("#replyInput1").value;
@@ -352,6 +358,7 @@ document.querySelector("#replySendButton1").addEventListener("click", function()
 	})
 	.then(() => listReply());
 });
+};
 </script>
 </body>
 </html>
