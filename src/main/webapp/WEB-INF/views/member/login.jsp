@@ -34,9 +34,10 @@
 					<input type="password" name="password" class="form-control" placeholder="암호">
 				</div>
 				
-				<div class="form-check form-switch mb-3"></div>
+				<div class="form-check form-switch mb-3">
 				<input class="form-check-input" name="remember-me" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
 				<label class="form-check-label" for="flexSwitchCheckChecked">자동 로그인</label>
+				</div>
 				<%-- 
 				 <sec:csrfInput/>
 				 --%>
