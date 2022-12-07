@@ -1,6 +1,6 @@
 -- Customers 테이블 조회
-SELECT * FROM Customers; -- ctrl + enter 현재 명령문 실행
+SELECT * FROM Customers; -- ctrl + enter : 현재 명령문 실행
 
 -- Employees 테이블 조회
-SELECT * FROM Employees; -- sql (Structured Query Language)
+SELECT * FROM Employees; -- SQL (Structured Query Language)
 

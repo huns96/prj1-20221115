@@ -8,7 +8,8 @@ SELECT AVG(Price) FROM Products;
 SELECT Price FROM Products;
 SELECT IFNULL(Price, 0) FROM Products;
 
-SELECT ProductID, ProductName, SupplierID, CategoryID, IFNULL(Price, 0) FROM Products;
+SELECT ProductID, ProductName, SupplierID, CategoryID, IFNULL(Price, 0)
+FROM Products;
 
 SELECT AVG(Price) FROM Products; -- 28.866364
 SELECT AVG(IFNULL(Price, 0)) FROM Products; -- 28.496282
@@ -23,6 +24,6 @@ SELECT
 	City,
 	PostalCode,
 	Country
-FROM Customers;
+FROM Customers;Categories
 
 

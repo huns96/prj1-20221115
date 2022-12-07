@@ -23,7 +23,7 @@ VALUES
 INSERT INTO Employees
 (EmployeeID, LastName, FirstName, Photo)
 VALUES
-(15, 'Doctor', 'Strange', 'EmpID13.pic');
+(13, 'Doctor', 'Strange', 'EmpID13.pic');
 
 -- 새 직원 추가 , EmployeeID컬럼 빼고
 INSERT INTO Employees
@@ -42,3 +42,25 @@ VALUES
 ('Kim', 'kildong2', ' ');
 
 -- NULL은 값이 없음
+
+-- Customers 테이블에 레코드 추가
+SELECT * FROM Customers ORDER BY 1 DESC;
+
+INSERT INTO Customers
+(CustomerID, CustomerName, ContactName, Address, City, PostalCode, Country)
+VALUES
+(100, 'Steve', 'Captain', 'brooklyn', 'NewYork', '33333', 'USA');
+
+INSERT INTO Customers
+(CustomerName, ContactName, Address, City, PostalCode, Country)
+VALUES
+('Stephen', 'Strange', 'brooklyn', 'NewYork', '33333', 'USA');
+
+-- DESCRIBE : 테이블 구조 조회, 제약사항(Constraints) 조회
+DESC Customers; 
+
+
+
+
+
+

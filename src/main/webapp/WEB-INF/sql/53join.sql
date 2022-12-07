@@ -57,15 +57,33 @@ WHERE Products.CategoryID = Categories.CategoryID
   AND Products.ProductName = 'Chais';
 
 -- Ikura 라는 상품의 카테고리명 조회
-SELECT * FROM Products JOIN Categories ON Products.CategoryID = Categories.CategoryID 
+SELECT CategoryName
+FROM Products JOIN Categories ON Products.CategoryId = Categories.CategoryID
 WHERE Products.ProductName = 'Ikura';
-
 -- Seafood 카테고리에 속한 상품명들 조회
-SELECT Products.ProductName FROM Categories JOIN Products ON Categories.CategoryID = Products.CategoryID
-WHERE Categories.categoryName = 'Seafood';
+SELECT * FROM Categories
+WHERE CategoryName = 'Seafood';
+SELECT * FROM Products
+WHERE CategoryID = 8;
 
--- ALIAS : 테이블명, 컬럼명에 별칭 (생략가능)
-SELECT p.ProductName FROM Categories c JOIN Products p ON c.CategoryID = p.CategoryID WHERE c.CategoryName = 'Seafood'; 
+SELECT Products.ProductName 
+FROM Categories JOIN Products 
+     ON Categories.CategoryID = Products.CategoryID
+WHERE Categories.CategoryName = 'Seafood';
+
+-- ALIAS : 테이블명, 컬럼명에 별칭
+SELECT c.CategoryId, p.ProductName
+-- FROM Categories AS c JOIN Products AS p 
+FROM Categories c JOIN Products p 
+     ON c.CategoryId = p.CategoryId
+WHERE c.CategoryName = 'Seafood';
+
+
+
+
+
+
+
 
 
 

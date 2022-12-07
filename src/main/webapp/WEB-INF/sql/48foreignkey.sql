@@ -55,16 +55,18 @@ VALUES (5, '010-6666-6666');
 INSERT INTO Contact (studentId, contact)
 VALUES (NULL, '010-6666-6666');
 
+SELECT * FROM Contact;
+
 -- 부모테이블의 레코드가 삭제될 경우
-DELETE FROM Contact WHERE id = 4; -- 먼저 삭제 될 수 없음
+DELETE FROM Student
+WHERE id = 4; -- 먼저 삭제될 수 없음
+
 -- -> 자식테이블 레코드 삭제를 먼저 해야함
-DELETE FROM Contact WHERE StudentId = 4;
+DELETE FROM Contact
+WHERE StudentId = 4;
 
 SELECT * FROM Contact;
-SELECT * FROM Studunt;
-
-
-
+SELECT * FROM Student;
 
 
 

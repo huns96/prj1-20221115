@@ -45,22 +45,10 @@ SELECT AVG(Quantity) FROM OrderDetails;
 
 -- SUM : 합계
 SELECT * FROM Products;
-SELECT SUM(price) FROM Products;
+SELECT SUM(Price) FROM Products;
 
 -- OrderDetails 에서
 -- 총 주문 수량 조회
 SELECT SUM(Quantity) FROM OrderDetails;
-
-
-
-
-
-
-
-
-
-
-
-
 
 

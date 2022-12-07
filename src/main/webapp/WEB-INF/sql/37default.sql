@@ -12,3 +12,19 @@ VALUES (3, 4);
 INSERT INTO MyTable12 (col1)
 VALUES (3);
 SELECT * FROM MyTable12;
+
+
+-- 현재 일시
+SELECT NOW();
+SELECT sysdate();
+
+CREATE TABLE MyTable13 (
+	name VARCHAR(255) NOT NULL,
+    birth DATE,
+    inserted DATETIME NOT NULL DEFAULT NOW()
+);
+INSERT INTO MyTable13 (name, birth)
+VALUES ('iron', '2022-01-02');
+SELECT * FROM MyTable13;
+
+

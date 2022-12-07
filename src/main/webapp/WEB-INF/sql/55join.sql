@@ -22,10 +22,10 @@ FROM Customers c JOIN Orders o ON c.CustomerID = o.CustomerID
 WHERE o.OrderDate = '1996-07-04';
 
 
--- '1996-07-04'에 주문을 처리한 직원이름과 배송자명 조회
-SELECT e.firstName, e.lastName, s.ShipperName 
-FROM Orders o JOIN Employees e ON e.EmployeeID = o.EmployeeID 
-			  JOIN Shippers s ON o.ShipperID = s.ShipperID 
+-- '1996-07-04'에 주문을 처리한 직원이름과 배송한 배송자명 조회
+SELECT e.FirstName, e.LastName, s.ShipperName
+FROM Orders o JOIN Employees e ON o.EmployeeID = e.EmployeeID
+              JOIN Shippers s ON o.ShipperID = s.ShipperID
 WHERE o.OrderDate = '1996-07-04';
 
 -- '1996-07-04'에 주문 고객, 직원, 배송자
@@ -40,7 +40,9 @@ WHERE o.OrderDate = '1996-07-04';
 
 
 
-
+                 
+                 
+                 ;
                  
                  
                  

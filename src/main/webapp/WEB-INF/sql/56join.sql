@@ -1,12 +1,19 @@
-SELECT * FROM Orders WHERE OrderDate = '1996-07-04';
+SELECT * 
+FROM Orders
+WHERE OrderDate = '1996-07-04';
 
-SELECT * FROM OrderDetails WHERE OrderID = '10248';
+SELECT *
+FROM OrderDetails
+WHERE OrderID = 10248;
 
-SELECT * FROM OrderDetails WHERE ProductID IN (11, 42, 72);
+SELECT * 
+FROM Products
+WHERE ProductID IN (11, 42, 72);
 
 -- '1996-07-04'에 주문된 상품명들 조회
-SELECT p.ProductName FROM Orders o JOIN OrderDetails d ON o.OrderID = d.OrderID
-								   JOIN Products p ON d.ProductID = p.ProductID
+SELECT p.ProductName
+FROM Orders o JOIN OrderDetails d ON o.OrderID = d.OrderID
+              JOIN Products p ON d.ProductID = p.ProductID
 WHERE o.OrderDate = '1996-07-04';
 
 -- '1996-07-04'에 주문한 총 주문 금액
@@ -22,6 +29,7 @@ FROM Orders o JOIN OrderDetails d ON o.OrderID = d.OrderID
 GROUP BY o.OrderDate
 ORDER BY o.OrderDate ;
 
+
 -- 고객별 주문 총 금액 조회
 SELECT c.CustomerID, 
        c.CustomerName, 
@@ -32,6 +40,12 @@ FROM Customers c JOIN Orders o ON c.CustomerID = o.CustomerID
 GROUP BY c.CustomerID 
 HAVING Total >= 10000
 ORDER BY c.CustomerID;
+                 
+
+
+
+
+
 
 
 

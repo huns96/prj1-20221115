@@ -12,9 +12,10 @@ ADD PRIMARY KEY (ProductID);
 ALTER TABLE Categories
 ADD PRIMARY KEY (CategoryID);
 
-ALTER TABLE Products 
+ALTER TABLE Products
 ADD FOREIGN KEY (CategoryID) 
 REFERENCES Categories(CategoryID);
+
 
 SELECT * FROM Categories;
 
@@ -23,14 +24,9 @@ INSERT INTO Products
 VALUES 
 ('toy', 1, 9, '1ea', 30); -- fail
 
-
 INSERT INTO Products 
 (ProductName, SupplierID, CategoryID, Unit, Price)
-VALUES ('toy', 1, 7, '1ea', 30);
-
-
-
-
-
+VALUES 
+('toy', 1, 7, '1ea', 30);
 
 
